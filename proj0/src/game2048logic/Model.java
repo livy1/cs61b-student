@@ -85,7 +85,19 @@ public class Model {
      * */
     public boolean emptySpaceExists() {
         // TODO: Task 2. Fill in this function.
+        for(int x = 0;x<size();x+=1) {
+            for (int y = 0; y < size(); y += 1) {
+
+                if (tile(x, y) == null) {
+
+                    return true;
+                }
+
+
+            }
+        }
         return false;
+
     }
 
     /**
@@ -95,6 +107,8 @@ public class Model {
      */
     public boolean maxTileExists() {
         // TODO: Task 3. Fill in this function.
+        
+
         return false;
     }
 
