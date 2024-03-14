@@ -129,10 +129,43 @@ public class Model {
      * 1. There is at least one empty space on the board.
      * 2. There are two adjacent tiles with the same value.
      */
+
     public boolean atLeastOneMoveExists() {
         // TODO: Fill in this function.
+        if (emptySpaceExists()){
+            return true;
+        } else if (adjunction()){
+            return true;
+        };
+    return false;
+    }
+
+    public boolean adjunction() {
+        for (int x = 0; x < size(); x += 1) {
+            for (int y = 0; y < size(); y += 1) {
+                for (int j = -1; j < 1; j += 1) {
+                    int neighborX = x + j;
+                    int neighborY = y + j;
+                    if (j == 0) {
+                        continue;
+                    }
+                    if (valid(neighborX, neighborY)) {
+                        if( tile(x, y).value() == tile(neighborX, y).value()|| tile(x, y).value() == tile(x, neighborY).value()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
         return false;
     }
+            public boolean valid(int a,int b){
+                if (a<0 || b<0 || a > size() || b > size()){
+                return false;
+                }
+            return true;
+        }
+
 
     /**
      * Moves the tile at position (x, y) as far up as possible.
