@@ -185,9 +185,44 @@ public class Model {
         Tile currTile = board.tile(x, y);
         int myValue = currTile.value();
         int targetY = y;
-
         // TODO: Tasks 5, 6, and 10. Fill in this function.
+        //task5: move tile up without merge(only look for null)
+        for (int i = 0; i < size(); i++) {
+            for (int j = 0; j < size(); j++) {
+                if (checkNull(i,j) == true) {
+                    continue;
+                }
+                    int moveY = 0;
+                    int upY = 0;
+                    for(int a = j; a+j < size(); a++){ //让above check 从被选定的这一行向上，不要向下
+                        upY = a + j;
+                        if(upY<size()){
+                            if(checkNull(i, upY) == true){
+                                moveY = upY;
+                            }
+                        }
+                    }
+                    if(upY < size()+1&& upY > 0) {
+                        Tile t = board.tile(i, j);
+                        board.move(i, moveY, t);
+                    }
+            }
+        }
+
+
     }
+        public boolean checkNull(int x, int y){
+        if(tile(x,y) == null){
+            return true;
+        }
+        return false;
+        }
+        public boolean checkSame(int x, int y, int i, int j){
+        if(tile(x,y).value() == tile(i,j).value()){
+            return true;
+        }
+        return false;
+        }
 
     /** Handles the movements of the tilt in column x of the board
      * by moving every tile in the column as far up as possible.
