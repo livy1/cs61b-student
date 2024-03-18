@@ -196,8 +196,9 @@ public class Model {
             else if (checkSame(x,y,x,upY) && tile(x,upY).wasMerged() == false)
             targetY = upY;
         }
-        board.move(x,targetY,currTile);
-
+        if(upY>0) {
+            board.move(x, targetY, currTile);
+        }
     }
         public boolean checkNull(int x, int y){
         if(tile(x,y) == null){
@@ -230,6 +231,9 @@ public class Model {
 
     public void tilt(Side side) {
         // TODO: Tasks 8 and 9. Fill in this function.
+        for(int x = 0; x < size(); x++){
+            tiltColumn(x);
+        }
     }
 
     /** Tilts every column of the board toward SIDE.
