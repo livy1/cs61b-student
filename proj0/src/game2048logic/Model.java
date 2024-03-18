@@ -185,42 +185,26 @@ public class Model {
         Tile currTile = board.tile(x, y);
         int myValue = currTile.value();
         int targetY = y;
+        int upY = 0;
         // TODO: Tasks 5, 6, and 10. Fill in this function.
         //task5: move tile up without merge(only look for null）
-        for (int i = 0; i < size(); i++) {
-            for (int j = 0; j < size(); j++) {
-                if (checkNull(i,j) == true) {
-                    continue;
-                }
-                    int moveY = 0;
-                    int upY = 0;
-                    for(int a = j; a+j < size(); a++){ //让above check 从被选定的这一行向上，不要向下
-                        upY = a + j;
-                        if(upY<size()){
-                            if(checkNull(i, upY) == true){
-                                moveY = upY;
-                            }
-                            else if(tile(i,upY).value() == tile(i,j).value() && !tile(i, upY).wasMerged()){
-                                moveY = upY;
-                            }
-                        }
-
-                    }
-                    if(upY < size()+1&& upY > 0) {
-                        Tile t = board.tile(i, j);
-                        board.move(i, moveY, t);
-                    }
+        for (int i = 1; i+y < size(); i ++){
+            upY = i+y;
+            if(null == tile(x,upY)){
+                targetY = upY;
             }
+
         }
-
-
+        board.move(x,targetY,currTile);
 
     }
         public boolean checkNull(int x, int y){
         if(tile(x,y) == null){
             return true;
         }
-        return false;
+        else{
+            return false;
+        }
         }
         public boolean checkSame(int x, int y, int i, int j){
         if(tile(x,y).value() == tile(i,j).value()){
@@ -236,6 +220,7 @@ public class Model {
      * */
     public void tiltColumn(int x) {
         // TODO: Task 7. Fill in this function.
+
     }
 
     public void tilt(Side side) {
