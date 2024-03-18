@@ -190,10 +190,11 @@ public class Model {
         //task5: move tile up without merge(only look for null）
         for (int i = 1; i+y < size(); i ++){
             upY = i+y;
-            if(null == tile(x,upY)){
+            if(checkNull(x,upY)){
                 targetY = upY;
             }
-
+            else if (checkSame(x,y,x,upY) && tile(x,upY).wasMerged() == false)
+            targetY = upY;
         }
         board.move(x,targetY,currTile);
 
