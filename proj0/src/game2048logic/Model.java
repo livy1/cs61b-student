@@ -221,7 +221,11 @@ public class Model {
      * */
     public void tiltColumn(int x) {
         // TODO: Task 7. Fill in this function.
-
+    for(int y = size()-1; y >-1; y-=1){
+        if(!checkNull(x,y)) {
+            moveTileUpAsFarAsPossible(x, y);
+        }
+    }
     }
 
     public void tilt(Side side) {
