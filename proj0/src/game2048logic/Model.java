@@ -193,12 +193,15 @@ public class Model {
             if(checkNull(x,upY)){
                 targetY = upY;
             }
-            else if (checkSame(x,y,x,upY) && tile(x,upY).wasMerged() == false)
-            targetY = upY;
+            else if (checkSame(x,y,x,upY) && tile(x,upY).wasMerged() == false) {
+                targetY = upY;
+                score += tile(x,y).value()*2;
+            }
         }
-        if(upY>0) {
+        if(targetY!=y) {
             board.move(x, targetY, currTile);
         }
+
     }
         public boolean checkNull(int x, int y){
         if(tile(x,y) == null){
@@ -231,9 +234,13 @@ public class Model {
 
     public void tilt(Side side) {
         // TODO: Tasks 8 and 9. Fill in this function.
+        board.setViewingPerspective(side);
         for(int x = 0; x < size(); x++){
             tiltColumn(x);
         }
+        board.setViewingPerspective(Side.NORTH);
+
+
     }
 
     /** Tilts every column of the board toward SIDE.
