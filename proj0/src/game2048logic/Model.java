@@ -186,7 +186,7 @@ public class Model {
         int myValue = currTile.value();
         int targetY = y;
         // TODO: Tasks 5, 6, and 10. Fill in this function.
-        //task5: move tile up without merge(only look for null)
+        //task5: move tile up without merge(only look for null）
         for (int i = 0; i < size(); i++) {
             for (int j = 0; j < size(); j++) {
                 if (checkNull(i,j) == true) {
@@ -200,7 +200,11 @@ public class Model {
                             if(checkNull(i, upY) == true){
                                 moveY = upY;
                             }
+                            else if(tile(i,upY).value() == tile(i,j).value() && !tile(i, upY).wasMerged()){
+                                moveY = upY;
+                            }
                         }
+
                     }
                     if(upY < size()+1&& upY > 0) {
                         Tile t = board.tile(i, j);
@@ -208,6 +212,7 @@ public class Model {
                     }
             }
         }
+
 
 
     }
